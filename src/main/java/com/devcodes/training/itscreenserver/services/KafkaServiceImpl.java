@@ -32,10 +32,14 @@ public class KafkaServiceImpl implements KafkaService {
     @KafkaListener(topics = "${kafka.topic.own}")
     public void listenWithHeaders(@Payload String message) {
 
-        String idScreen = message.split("screen:")[1];
-        Screen screen = new Screen(idScreen,idScreen,new Date());
-        screenRepository.save(screen);
-        System.out.println("Received Message: " + message);
+        if(message.contains("screen")){
+            String idScreen = message.split("screen:")[1];
+            Screen screen = new Screen(idScreen,idScreen,new Date());
+            screenRepository.save(screen);
+        }else if(message.contains("response")){
+            System.out.println("Received Message: " + message);
+        }
+
     }
 
     @Override

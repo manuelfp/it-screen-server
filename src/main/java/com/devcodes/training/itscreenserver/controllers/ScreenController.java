@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.imageio.ImageIO;
 import java.io.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/rest/v1/screen")
 public class ScreenController {
